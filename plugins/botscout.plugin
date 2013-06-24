@@ -1,0 +1,70 @@
+<?php
+/**
+* copyright            : (C) 2001-2010 Advanced Internet Designs Inc.
+* email                : forum@prohost.org
+* $Id: botscout.plugin 5071 2010-11-10 18:32:04Z naudefj $
+*
+* This program is free software; you can redistribute it and/or modify it
+* under the terms of the GNU General Public License as published by the
+* Free Software Foundation; version 2 of the License.
+**/
+
+// Initialize plugin
+plugin_add_hook('PREREGISTRATION', 'plugin_botscout');
+
+// Validate registering users with BotScout
+function plugin_botscout($uent) {
+	if ((@include_once $GLOBALS['PLUGIN_PATH'] .'botscout.ini') === false) {
+		$ini = array();
+	}
+
+	$apiquery = 'http://botscout.com/test/?multi&mail='. urlencode($uent->email) .'.&ip='. $_SERVER['REMOTE_ADDR'];
+	if ($ini['BOTSCOUT_API_KEY']) {
+		$apiquery .= '&key='. $ini['BOTSCOUT_API_KEY'];
+	}
+
+	$botscout_data = file_get_contents($apiquery);
+	if (substr($botscout_data, 0, 1) == '!') {	// Exclamation mark indicates an error!
+		fud_logerror('Botscout returned ['. $botscout_data .'] while validating '. $uent->email .' from '. $_SERVER['REMOTE_ADDR'] .'. User will be allowed to register.', 'fud_errors');
+		return $uent;
+	}
+
+	$botdata = explode('|', $botscout_data); 
+	if ($botdata[3] > 0 || $botdata[5] > 0) { 	// Tests email address or IP.
+		echo '<h2>Sorry, bots are not allowed to register.</h2>';
+		echo '<p>Your '. $botdata[2] .' was found '. $botdata[3] .' times.<br />Your '. $botdata[4] .' was found '. $botdata[5] .' times.</p>';
+		exit;
+	}
+
+	return $uent;
+}
+
+function botscout_info() {
+	return array('name' => 'BotScout',
+		     'desc' => 'This plugin integrates with the BotScout API to screen registering users and prevent known bots from creating accounts on your forum.',
+		     'version' => '1.2');
+}
+
+function botscout_config() {
+	if((@include_once $GLOBALS['PLUGIN_PATH'] .'botscout.ini') === false) {
+		$ini = NULL;
+	}
+		
+	if (isset($_POST['Set'])) {
+		foreach (array_keys($_POST) as $key) {
+			if (substr($key,0,9) == 'BOTSCOUT_') {
+				$ini[$key] = $_POST[$key];
+			}
+		}
+		$fp = fopen($GLOBALS['PLUGIN_PATH'] .'botscout.ini', 'w');
+		fwrite($fp, '<?php $ini = '. var_export($ini, 1).'; ?>');
+		fclose($fp);
+		echo '<font color="green">Settings successfully saved.</font>';
+	}
+	?>
+<p>Your API key (get one from <a href="http://botscout.com/">botscout.com</a>):<br />
+<input name="BOTSCOUT_API_KEY" value="<?php echo $ini['BOTSCOUT_API_KEY'] ?>" size="60" /></p>
+	<?php
+}
+
+?>

@@ -1,0 +1,96 @@
+/**
+* copyright            : (C) 2001-2010 Advanced Internet Designs Inc.
+* email                : forum@prohost.org
+* $Id: header.tmpl 5075 2010-11-15 17:59:45Z naudefj $
+*
+* This program is free software; you can redistribute it and/or modify it
+* under the terms of the GNU General Public License as published by the
+* Free Software Foundation; version 2 of the License.
+**/
+
+{MAIN_SECTION: header // The forum's page header.}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{DIR}" lang="{LANG}" xml:lang="{LANG}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
+<title>{GVAR: FORUM_TITLE}{VAR: TITLE_EXTRA}</title>
+<meta name="description" content="{IF: !empty($META_DESCR)}{VAR: META_DESCR}{ELSE}{GVAR: FORUM_DESCR}{END}" />
+<base href="{FULL_ROOT}" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/lib.js"></script>
+<link rel="stylesheet" href="{THEME_ROOT}/forum.css" type="text/css" media="screen" title="Default Forum Theme" />
+<link rel="search" type="application/opensearchdescription+xml" title="{GVAR: FORUM_TITLE} Search" href="{FULL_ROOT}open_search.php" />
+{VAR: RSS}
+</head>
+<body>
+<table class="wa" border="0" cellspacing="3" cellpadding="5"><tr><td class="ForumBackground" valign="top">
+<!-- {INJECTION_POINT: left_block} -->
+<div class="ForumBackground vpheader">
+<span class="headdescr">
+<table width=100% cellspacing=0 cellpadding=0 border=0>
+<tr height=100><td width=320 valign=bottom>
+<a href="/"><img src="/forum/logo.gif" width=312 height=79 border=0 alt="ВелоПитер"></a>
+</td><td valign=bottom>
+{IF: $GLOBALS['FUD_OPT_1'] & 1 && $GLOBALS['FUD_OPT_1'] & 16777216 &0}
+  <div class="headsearch">
+    <form id="headsearch" method="get" action="{ROOT}">{DEF: _hs}
+      <br /><label accesskey="f" title="{MSG: search_forum_search}">{MSG: search_forum_search}:<br />
+      <input type="text" name="srch" value="" size="15" placeholder="{MSG: search_forum_search}" /></label>
+      <input type="hidden" name="t" value="search" />
+      <input type="submit" name="btn_submit" value="{MSG: search}" class="headbutton" />&nbsp;
+    </form>
+</div>
+{ENDIF}
+</td>
+<td align=left valign=bottom cellpadding=5 width="25%">
+ <? include("../newstape_inc.php"); ?></td>
+<td align=right width=350 valign=bottom>
+
+
+<!-- banners start -->
+<div align=right>
+<table cellspacing=5 cellpadding=5>
+<tr valign=top>
+
+<td width="100" height=100 align=right>
+<a href="http://mountainpeaks.ru/" target="_blank">
+<img border="0" src="http://velopiter.spb.ru/banner_gv.gif" alt="www.chillengrillen.ru"
+width="100" height="100"></a>
+
+<td width="100" height=100 align=right>
+<a href="http://velopiter.spb.ru/activeinfo/info.php?fid=14&c=1" target="_blank">
+<img border="0" src="http://velopiter.spb.ru/bc.gif" alt="Балтийская торговая группа"
+width="100" height="100"></a>
+
+<td width="100" height=100 align=right>
+<a href="http://www.velodrive.ru/" target="_blank">
+<img border="0" src="http://velopiter.spb.ru/bf.gif" alt="Велодрайв"
+width="100" height="100"></a>
+
+<td width="100" height=100 align=right>
+<a href="http://www.chillengrillen.ru/" target="_blank">
+<img border="0" src="http://velopiter.spb.ru/chillengrillen.gif" alt="www.chillengrillen.ru"
+width="100" height="100"></a>
+
+</tr></table></div>
+<!--- banners end-->
+
+
+</td></tr></table>
+</span>
+</div>{MAIN_SECTION: END}
+
+{MAIN_SECTION: header_plain // Another header for small popup forms.}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{DIR}" lang="{LANG}" xml:lang="{LANG}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
+<title>{GVAR: FORUM_TITLE}{VAR: TITLE_EXTRA}</title>
+<base href="{FULL_ROOT}" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/lib.js"></script>
+<link rel="stylesheet" href="{THEME_ROOT}/forum.css" type="text/css" />
+</head>
+<body>
+<table class="wa" border="0" cellspacing="3" cellpadding="5"><tr><td class="ForumBackground">
+{MAIN_SECTION: END}
+

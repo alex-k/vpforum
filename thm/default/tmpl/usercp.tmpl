@@ -1,0 +1,109 @@
+/**
+* copyright            : (C) 2001-2010 Advanced Internet Designs Inc.
+* email                : forum@prohost.org
+* $Id: usercp.tmpl 5044 2010-10-17 11:08:11Z naudefj $
+*
+* This program is free software; you can redistribute it and/or modify it
+* under the terms of the GNU General Public License as published by the
+* Free Software Foundation; version 2 of the License.
+**/
+
+{PHP_FILE: input: usercp.inc.t; output: @usercp.inc;}
+
+{MAIN_SECTION: usercp // Top level menu (User control panel).}<div class="UserControlPanel">
+<a href="/forum/index.php?t=msg&th=102972" class="UserControlPanel nw" title="Правила"><img src="/forum/images/message_icons/icon4.gif" alt=""> Правила форума </a>&nbsp;&nbsp;
+  {TEMPLATE-DATA: private_msg} 
+  {IF: ($FUD_OPT_1 & 8388608 || (_uid && $FUD_OPT_1 & 4194304) || $usr->users_opt & 1048576)}{TEMPLATE: member_search}{ENDIF}
+  {IF: $FUD_OPT_3 & 134217728}{TEMPLATE: calendar}{ENDIF}
+  {IF: $FUD_OPT_1 & 16777216}{TEMPLATE: u_forum_search}{ENDIF}
+  &nbsp;&nbsp;<a class="UserControlPanel nw" accesskey="h" href="{TEMPLATE: usercp_lnk2}" title="{MSG: faq}"><img src="{THEME_IMAGE_ROOT}/top_help{DEF: img_ext}" alt="" /> {MSG: faq}</a>
+  {IF: __fud_real_user__}{TEMPLATE: usercp_usercp}{ELSE}{TEMPLATE: register}{END}
+  {IF: __fud_real_user__}{TEMPLATE: logout}{ELSE}{TEMPLATE: login}{END}
+  &nbsp;&nbsp;<a class="UserControlPanel nw" href="{TEMPLATE: usercp_lnk3}" title="{MSG: home}"><img src="{THEME_IMAGE_ROOT}/top_home{DEF: img_ext}" alt="" /> {MSG: home}</a>
+  {IF: $is_a || ($usr->users_opt & 268435456)}{TEMPLATE: admin_control_panel}{ENDIF}
+</div>
+{MAIN_SECTION: END}
+
+{SECTION: usercp_lnk}
+{ROOT}?t=search{IF: isset($frm->forum_id)}&amp;forum_limiter={FUNC: (int)$frm->forum_id}{ENDIFI}&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: usercp_lnk2}
+{ROOT}?t=help_index&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: usercp_lnk3}
+{ROOT}?t=index&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: u_forum_search}<a class="UserControlPanel nw" href="{TEMPLATE: usercp_lnk}" title="{MSG: search}"><img src="{THEME_IMAGE_ROOT}/top_search{DEF: img_ext}" alt="" /> {MSG: search}</a>
+&nbsp;&nbsp;
+<a class="UserControlPanel nw" href="/search.html" title="Yandex поиск"><img src="{THEME_IMAGE_ROOT}/top_search{DEF: img_ext}" alt="" /> Поиск через Yandex</a>
+&nbsp;&nbsp;{SECTION: END}
+
+{SECTION: login_lnk}
+{ROOT}?t=login&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: login login link}
+&nbsp;&nbsp;<a class="UserControlPanel nw" href="{TEMPLATE: login_lnk}" title="{MSG: login}"><img src="{THEME_IMAGE_ROOT}/top_login{DEF: img_ext}" alt="" /> {MSG: login}</a>
+{SECTION: END}
+
+{SECTION: logout_lnk}
+{ROOT}?t=login&amp;{DEF: _rsid}&amp;logout=1&amp;SQ={GVAR: sq}
+{SECTION: END}
+
+{SECTION: logout logout link}
+&nbsp;&nbsp;<a class="UserControlPanel nw" href="{TEMPLATE: logout_lnk}" title="{MSG: logout}"><img src="{THEME_IMAGE_ROOT}/top_logout{DEF: img_ext}" alt="" /> {MSG: logout} [ {VAR: usr->alias} ]</a>
+{SECTION: END}
+
+{SECTION: register_lnk}
+{ROOT}?t=register&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: register register link}
+&nbsp;&nbsp;<a class="UserControlPanel nw" href="{TEMPLATE: register_lnk}" title="{MSG: register}"><img src="{THEME_IMAGE_ROOT}/top_register{DEF: img_ext}" alt="" /> {MSG: register}</a>
+{SECTION: END}
+
+{SECTION: usercp_usercp User control panel link}&nbsp;&nbsp;<a class="UserControlPanel nw" href="{TEMPLATE: usercp_usercp_lnk}" title="{MSG: profile_desc}"><img src="{THEME_IMAGE_ROOT}/top_profile{DEF: img_ext}" alt="" /> {MSG: profile}</a>
+{SECTION: END}
+
+{SECTION: admin_control_panel admin control panel link}
+&nbsp;&nbsp;<a class="UserControlPanel nw" href="adm/index.php?S={DEF: s}&amp;SQ={GVAR: sq}" title="{MSG: admin_control_panel}"><img src="{THEME_IMAGE_ROOT}/top_admin{DEF: img_ext}" alt="" /> {MSG: admin_control_panel}</a>
+{SECTION: END}
+
+{SECTION: private_msg_empty_lnk}
+{ROOT}?t=pmsg&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: private_msg_empty link to private msg control panel}
+<a href="{TEMPLATE: private_msg_empty_lnk}" class="UserControlPanel nw" title="{MSG: pm}"><img src="{THEME_IMAGE_ROOT}/top_pm{DEF: img_ext}" alt="" /> {MSG: pm}</a>&nbsp;&nbsp;
+{SECTION: END}
+
+{SECTION: private_msg_unread_lnk}
+{ROOT}?t=pmsg&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: private_msg_unread link to private msg control panel with unread messages indicator}
+<a href="{TEMPLATE: private_msg_unread_lnk}" class="UserControlPanel nw" title="{MSG: pm}"><img src="{THEME_IMAGE_ROOT}/top_pm{DEF: img_ext}" alt="" /> {MSG: new_private_messages}</a>&nbsp;&nbsp;
+{SECTION: END}
+
+{SECTION: calendar_lnk}
+{ROOT}?t=cal&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: calendar link to forum's calendar}
+<a class="UserControlPanel nw" href="{TEMPLATE: calendar_lnk}" title="{MSG: calendar}"><img src="{THEME_IMAGE_ROOT}/calendar{DEF: img_ext}" alt="" /> {MSG: calendar}</a>&nbsp;&nbsp;
+{SECTION: END}
+
+{SECTION: member_search_lnk}
+{ROOT}?t=finduser&amp;btn_submit=Find&amp;{DEF: _rsid}
+{SECTION: END}
+
+{SECTION: member_search link to member search}
+<a class="UserControlPanel nw" href="{TEMPLATE: member_search_lnk}" title="{MSG: members}"><img src="{THEME_IMAGE_ROOT}/top_members{DEF: img_ext}" alt="" /> {MSG: members}</a>&nbsp;&nbsp;
+{SECTION: END}
+
+{SECTION: usercp_usercp_lnk}
+{ROOT}?t=uc&amp;{DEF: _rsid}
+{SECTION: END}

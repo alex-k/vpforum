@@ -1,0 +1,3778 @@
+-- MySQL dump 10.13  Distrib 5.5.28, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: vpforum
+-- ------------------------------------------------------
+-- Server version	5.5.28-0ubuntu0.12.04.3
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `fud26_action_log`
+--
+
+DROP TABLE IF EXISTS `fud26_action_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_action_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `logtime` bigint(20) NOT NULL DEFAULT '0',
+  `logaction` text CHARACTER SET utf8,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `a_res` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `a_res_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_action_log_i_ul` (`user_id`,`logtime`)
+) ENGINE=MyISAM AUTO_INCREMENT=88077 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_ann_forums`
+--
+
+DROP TABLE IF EXISTS `fud26_ann_forums`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_ann_forums` (
+  `ann_id` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ann_id`,`forum_id`),
+  KEY `fud26_ann_forums_i_a` (`ann_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_announce`
+--
+
+DROP TABLE IF EXISTS `fud26_announce`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_announce` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_started` bigint(20) NOT NULL DEFAULT '0',
+  `date_ended` bigint(20) NOT NULL DEFAULT '0',
+  `subject` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `text` text CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fud26_announce_i_dd` (`date_started`,`date_ended`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_attach`
+--
+
+DROP TABLE IF EXISTS `fud26_attach`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_attach` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `original_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `owner` int(11) NOT NULL DEFAULT '0',
+  `attach_opt` int(11) NOT NULL DEFAULT '0',
+  `message_id` int(11) NOT NULL DEFAULT '0',
+  `dlcount` int(11) NOT NULL DEFAULT '0',
+  `mime_type` int(11) NOT NULL DEFAULT '0',
+  `fsize` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_attach_i_mp` (`message_id`,`attach_opt`)
+) ENGINE=MyISAM AUTO_INCREMENT=105739 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_avatar`
+--
+
+DROP TABLE IF EXISTS `fud26_avatar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_avatar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `descr` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `gallery` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'default',
+  PRIMARY KEY (`id`),
+  KEY `fud26_avatar_i_g` (`gallery`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_blocked_logins`
+--
+
+DROP TABLE IF EXISTS `fud26_blocked_logins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_blocked_logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_bookmarks`
+--
+
+DROP TABLE IF EXISTS `fud26_bookmarks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_bookmarks` (
+  `user_id` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  PRIMARY KEY (`user_id`,`thread_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_buddy`
+--
+
+DROP TABLE IF EXISTS `fud26_buddy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_buddy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bud_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_buddy_i_ub` (`user_id`,`bud_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12013 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_calendar`
+--
+
+DROP TABLE IF EXISTS `fud26_calendar`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_calendar` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `day` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `month` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `year` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descr` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fud26_calendar_i_ymd` (`year`,`month`,`day`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_cat`
+--
+
+DROP TABLE IF EXISTS `fud26_cat`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_cat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `cat_opt` int(11) NOT NULL DEFAULT '0',
+  `view_order` int(11) NOT NULL DEFAULT '3',
+  `parent` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_cat_p` (`parent`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_custom_fields`
+--
+
+DROP TABLE IF EXISTS `fud26_custom_fields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_custom_fields` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `descr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_opt` int(11) NOT NULL,
+  `choice` text COLLATE utf8_unicode_ci,
+  `field_opt` int(11) NOT NULL,
+  `vieworder` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_custom_tags`
+--
+
+DROP TABLE IF EXISTS `fud26_custom_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_custom_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_custom_tags_i_u` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_email_block`
+--
+
+DROP TABLE IF EXISTS `fud26_email_block`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_email_block` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email_block_opt` int(11) NOT NULL DEFAULT '1',
+  `string` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_email_block_i_s` (`string`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_ext_block`
+--
+
+DROP TABLE IF EXISTS `fud26_ext_block`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_ext_block` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ext` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fc_view`
+--
+
+DROP TABLE IF EXISTS `fud26_fc_view`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fc_view` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `c` int(11) NOT NULL DEFAULT '0',
+  `f` int(11) NOT NULL DEFAULT '0',
+  `lvl` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_fc_view_i_f` (`f`),
+  KEY `fud26_fc_view_i_c` (`c`)
+) ENGINE=MyISAM AUTO_INCREMENT=15727 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_10`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_10`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_10` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_100`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_100`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_100` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_101`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_101`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_101` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_102`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_102`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_102` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_103`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_103`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_103` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_104`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_104`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_104` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_105`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_105`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_105` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_106`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_106`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_106` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_107`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_107`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_107` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_108`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_108`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_108` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_12`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_12`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_12` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_18`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_18`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_18` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_19`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_19`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_19` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_2`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_2` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_21`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_21`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_21` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_22`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_22`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_22` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_23`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_23`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_23` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_24`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_24`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_24` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_25`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_25`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_25` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_26`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_26`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_26` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_29`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_29`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_29` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_3`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_3` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_30`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_30`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_30` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_36`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_36`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_36` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_37`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_37`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_37` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_38`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_38`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_38` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_44`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_44`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_44` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_45`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_45`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_45` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_46`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_46`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_46` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_47`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_47`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_47` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_48`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_48`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_48` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_49`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_49`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_49` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_5`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_5` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_51`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_51`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_51` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_52`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_52`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_52` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_53`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_53`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_53` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_54`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_54`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_54` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_56`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_56`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_56` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_57`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_57`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_57` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_58`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_58`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_58` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_59`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_59`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_59` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_6`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_6` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_60`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_60`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_60` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_61`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_61`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_61` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_62`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_62`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_62` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_63`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_63`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_63` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_64`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_64`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_64` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_65`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_65`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_65` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_66`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_66`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_66` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_67`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_67`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_67` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_68`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_68`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_68` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_69`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_69`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_69` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_7`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_7` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_70`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_70`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_70` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_71`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_71`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_71` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_72`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_72`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_72` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_73`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_73`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_73` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_74`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_74`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_74` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_75`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_75`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_75` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_76`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_76`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_76` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_77`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_77`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_77` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_78`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_78`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_78` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_79`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_79`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_79` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_8`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_8`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_8` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_80`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_80`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_80` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_81`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_81`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_81` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_82`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_82`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_82` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_83`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_83`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_83` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_84`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_84`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_84` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_85`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_85`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_85` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_86`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_86`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_86` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_87`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_87`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_87` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_88`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_88`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_88` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_89`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_89`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_89` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_9`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_9`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_9` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_90`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_90`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_90` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_91`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_91`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_91` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_92`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_92`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_92` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_93`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_93`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_93` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_94`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_94`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_94` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_95`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_95`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_95` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_96`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_96`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_96` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_97`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_97`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_97` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_98`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_98`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_98` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_99`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_99`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_99` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_fl_pm`
+--
+
+DROP TABLE IF EXISTS `fud26_fl_pm`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_fl_pm` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_forum`
+--
+
+DROP TABLE IF EXISTS `fud26_forum`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_forum` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cat_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `descr` text CHARACTER SET utf8,
+  `post_passwd` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `forum_icon` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `date_created` bigint(20) NOT NULL DEFAULT '0',
+  `thread_count` int(11) NOT NULL DEFAULT '0',
+  `post_count` int(11) NOT NULL DEFAULT '0',
+  `last_post_id` int(11) NOT NULL DEFAULT '0',
+  `view_order` int(11) NOT NULL DEFAULT '0',
+  `max_attach_size` int(11) NOT NULL DEFAULT '0',
+  `max_file_attachments` int(11) NOT NULL DEFAULT '1',
+  `moderators` text CHARACTER SET utf8,
+  `message_threshold` int(11) NOT NULL DEFAULT '0',
+  `forum_opt` int(11) NOT NULL DEFAULT '16',
+  `url_redirect` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fud26_forum_i_c` (`cat_id`),
+  KEY `fud26_forum_i_lpi` (`last_post_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_forum_notify`
+--
+
+DROP TABLE IF EXISTS `fud26_forum_notify`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_forum_notify` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_forum_notify_i_uf` (`user_id`,`forum_id`),
+  KEY `fud26_forum_notify_i_f` (`forum_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1790 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_forum_read`
+--
+
+DROP TABLE IF EXISTS `fud26_forum_read`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_forum_read` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `last_view` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_forum_read_i_fu` (`forum_id`,`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=366713 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_geoip`
+--
+
+DROP TABLE IF EXISTS `fud26_geoip`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_geoip` (
+  `ips` bigint(20) NOT NULL,
+  `ipe` bigint(20) NOT NULL,
+  `cc` char(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ips`,`ipe`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_group_cache`
+--
+
+DROP TABLE IF EXISTS `fud26_group_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_group_cache` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `resource_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `group_cache_opt` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_group_cache_i_ru` (`resource_id`,`user_id`),
+  KEY `fud26_group_cache_i_g` (`group_id`),
+  KEY `fud26_group_cache_i_u` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=39730 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_group_members`
+--
+
+DROP TABLE IF EXISTS `fud26_group_members`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_group_members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `group_members_opt` int(11) NOT NULL DEFAULT '65536',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_group_members_i_gu` (`group_id`,`user_id`),
+  KEY `fud26_group_members_i_gmo` (`group_members_opt`)
+) ENGINE=MyISAM AUTO_INCREMENT=359 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_group_resources`
+--
+
+DROP TABLE IF EXISTS `fud26_group_resources`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_group_resources` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL DEFAULT '0',
+  `resource_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_group_resources_i_gr` (`group_id`,`resource_id`),
+  KEY `fud26_group_resources_i_r` (`resource_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_groups`
+--
+
+DROP TABLE IF EXISTS `fud26_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `inherit_id` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `groups_opt` int(11) NOT NULL DEFAULT '0',
+  `groups_opti` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_groups_i_f` (`forum_id`),
+  KEY `fud26_groups_i_i` (`inherit_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=114 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_index`
+--
+
+DROP TABLE IF EXISTS `fud26_index`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_index` (
+  `word_id` int(11) NOT NULL DEFAULT '0',
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`word_id`,`msg_id`),
+  KEY `fud26_index_i_m` (`msg_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_ip_block`
+--
+
+DROP TABLE IF EXISTS `fud26_ip_block`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_ip_block` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ca` int(11) NOT NULL DEFAULT '0',
+  `cb` int(11) NOT NULL DEFAULT '0',
+  `cc` int(11) NOT NULL DEFAULT '0',
+  `cd` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_jobs`
+--
+
+DROP TABLE IF EXISTS `fud26_jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `minute` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '*',
+  `hour` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '*',
+  `dom` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '*',
+  `month` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '*',
+  `dow` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '*',
+  `cmd` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `nextrun` bigint(20) NOT NULL DEFAULT '0',
+  `lastrun` bigint(20) NOT NULL DEFAULT '0',
+  `locked` bigint(20) NOT NULL DEFAULT '0',
+  `job_opt` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_level`
+--
+
+DROP TABLE IF EXISTS `fud26_level`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_level` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `post_count` int(11) NOT NULL DEFAULT '0',
+  `img` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `level_opt` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_level_i_p` (`post_count`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_mime`
+--
+
+DROP TABLE IF EXISTS `fud26_mime`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_mime` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fl_ext` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `mime_hdr` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `descr` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `icon` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT 'unknown.gif',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_mime_f` (`fl_ext`)
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_mlist`
+--
+
+DROP TABLE IF EXISTS `fud26_mlist`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_mlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `subject_regex_haystack` text CHARACTER SET utf8,
+  `subject_regex_needle` text CHARACTER SET utf8,
+  `body_regex_haystack` text CHARACTER SET utf8,
+  `body_regex_needle` text CHARACTER SET utf8,
+  `additional_headers` text CHARACTER SET utf8,
+  `mlist_opt` int(11) NOT NULL DEFAULT '76',
+  `custom_sig` text CHARACTER SET utf8,
+  `mbox_server` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `mbox_user` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mbox_pass` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
+  `mbox_type` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_mlist_i_f` (`forum_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_mod`
+--
+
+DROP TABLE IF EXISTS `fud26_mod`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_mod` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_mod_i_uf` (`user_id`,`forum_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1022 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_mod_que`
+--
+
+DROP TABLE IF EXISTS `fud26_mod_que`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_mod_que` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_msg`
+--
+
+DROP TABLE IF EXISTS `fud26_msg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_msg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL DEFAULT '0',
+  `poster_id` int(11) NOT NULL DEFAULT '0',
+  `reply_to` int(11) NOT NULL DEFAULT '0',
+  `ip_addr` varchar(15) CHARACTER SET utf8 NOT NULL DEFAULT '0.0.0.0',
+  `host_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `post_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `update_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `updated_by` int(11) NOT NULL DEFAULT '0',
+  `icon` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `subject` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `attach_cnt` int(11) NOT NULL DEFAULT '0',
+  `poll_id` int(11) NOT NULL DEFAULT '0',
+  `foff` bigint(20) NOT NULL DEFAULT '0',
+  `length` int(11) NOT NULL DEFAULT '0',
+  `file_id` int(11) NOT NULL DEFAULT '1',
+  `offset_preview` bigint(20) NOT NULL DEFAULT '0',
+  `length_preview` int(11) NOT NULL DEFAULT '0',
+  `file_id_preview` int(11) NOT NULL DEFAULT '0',
+  `attach_cache` text CHARACTER SET utf8,
+  `poll_cache` text CHARACTER SET utf8,
+  `mlist_msg_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `msg_opt` int(11) NOT NULL DEFAULT '1',
+  `apr` int(11) NOT NULL DEFAULT '0',
+  `flag_cc` char(2) CHARACTER SET utf8 DEFAULT NULL,
+  `flag_country` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fud26_msg_i_ta` (`thread_id`,`apr`),
+  KEY `fud26_msg_i_ps` (`post_stamp`),
+  KEY `fud26_msg_i_pa` (`poster_id`,`apr`),
+  KEY `fud26_msg_i_a` (`apr`),
+  KEY `fud26_msg_i_ac` (`attach_cnt`),
+  KEY `fud26_msg_i_pi` (`poll_id`),
+  KEY `fud26_msg_i_ip` (`ip_addr`,`post_stamp`),
+  KEY `fud26_msg_i_mmi` (`mlist_msg_id`),
+  KEY `fud26_msg_i_s` (`subject`)
+) ENGINE=MyISAM AUTO_INCREMENT=17315786 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_msg_report`
+--
+
+DROP TABLE IF EXISTS `fud26_msg_report`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_msg_report` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `reason` text CHARACTER SET utf8,
+  `stamp` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_msg_report_i_mu` (`msg_id`,`user_id`),
+  KEY `fud26_msg_report_i_u` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4446 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_msg_store`
+--
+
+DROP TABLE IF EXISTS `fud26_msg_store`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_msg_store` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `data` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1680829 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_nntp`
+--
+
+DROP TABLE IF EXISTS `fud26_nntp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_nntp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `nntp_opt` int(11) NOT NULL DEFAULT '44',
+  `server` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `newsgroup` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `port` int(11) NOT NULL DEFAULT '0',
+  `timeout` int(11) NOT NULL DEFAULT '0',
+  `login` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `pass` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `imp_limit` int(11) NOT NULL DEFAULT '0',
+  `custom_sig` text CHARACTER SET utf8,
+  `tracker` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_nntp_i_f` (`forum_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_pages`
+--
+
+DROP TABLE IF EXISTS `fud26_pages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_pages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `slug` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `body` text COLLATE utf8_unicode_ci,
+  `created_by` int(11) NOT NULL,
+  `page_opt` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_pages_s` (`slug`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_pmsg`
+--
+
+DROP TABLE IF EXISTS `fud26_pmsg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_pmsg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `to_list` text CHARACTER SET utf8,
+  `ouser_id` int(11) NOT NULL DEFAULT '0',
+  `duser_id` int(11) NOT NULL DEFAULT '0',
+  `pdest` int(11) NOT NULL DEFAULT '0',
+  `ip_addr` varchar(15) CHARACTER SET utf8 NOT NULL DEFAULT '0.0.0.0',
+  `host_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `post_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `read_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `icon` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `subject` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `attach_cnt` int(11) NOT NULL DEFAULT '0',
+  `foff` bigint(20) NOT NULL DEFAULT '0',
+  `length` int(11) NOT NULL DEFAULT '0',
+  `ref_msg_id` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
+  `fldr` int(11) NOT NULL DEFAULT '0',
+  `pmsg_opt` int(11) NOT NULL DEFAULT '49',
+  PRIMARY KEY (`id`),
+  KEY `fud26_pmsg_i_dfr` (`duser_id`,`fldr`,`read_stamp`),
+  KEY `fud26_pmsg_i_dfi` (`duser_id`,`fldr`,`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1378567 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_pmsg_bkup1212`
+--
+
+DROP TABLE IF EXISTS `fud26_pmsg_bkup1212`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_pmsg_bkup1212` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `to_list` text CHARACTER SET utf8,
+  `ouser_id` int(11) NOT NULL DEFAULT '0',
+  `duser_id` int(11) NOT NULL DEFAULT '0',
+  `pdest` int(11) NOT NULL DEFAULT '0',
+  `ip_addr` varchar(15) CHARACTER SET utf8 NOT NULL DEFAULT '0.0.0.0',
+  `host_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `post_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `read_stamp` bigint(20) NOT NULL DEFAULT '0',
+  `icon` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `subject` varchar(100) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `attach_cnt` int(11) NOT NULL DEFAULT '0',
+  `foff` bigint(20) NOT NULL DEFAULT '0',
+  `length` int(11) NOT NULL DEFAULT '0',
+  `ref_msg_id` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
+  `fldr` int(11) NOT NULL DEFAULT '0',
+  `pmsg_opt` int(11) NOT NULL DEFAULT '49',
+  PRIMARY KEY (`id`),
+  KEY `fud26_pmsg_bkup1212_i_dfr` (`duser_id`,`fldr`,`read_stamp`),
+  KEY `fud26_pmsg_bkup1212_i_dfi` (`duser_id`,`fldr`,`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1249036 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_poll`
+--
+
+DROP TABLE IF EXISTS `fud26_poll`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_poll` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `owner` int(11) NOT NULL DEFAULT '0',
+  `creation_date` bigint(20) NOT NULL DEFAULT '0',
+  `expiry_date` bigint(20) NOT NULL DEFAULT '0',
+  `max_votes` int(11) DEFAULT NULL,
+  `total_votes` int(11) NOT NULL DEFAULT '0',
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_poll_i_o` (`owner`)
+) ENGINE=MyISAM AUTO_INCREMENT=1399 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_poll_opt`
+--
+
+DROP TABLE IF EXISTS `fud26_poll_opt`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_poll_opt` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poll_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `count` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `fud26_poll_opt_i_p` (`poll_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5717 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_poll_opt_track`
+--
+
+DROP TABLE IF EXISTS `fud26_poll_opt_track`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_poll_opt_track` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poll_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `poll_opt` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_poll_opt_track_i_pu` (`poll_id`,`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=49457 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_read`
+--
+
+DROP TABLE IF EXISTS `fud26_read`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_read` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  `last_view` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_read_i_tu` (`thread_id`,`user_id`),
+  KEY `fud26_read_i_u` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2151051668 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_replace`
+--
+
+DROP TABLE IF EXISTS `fud26_replace`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_replace` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `replace_str` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `with_str` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `from_post` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `to_msg` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `replace_opt` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_search`
+--
+
+DROP TABLE IF EXISTS `fud26_search`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_search` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `word` varchar(50) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_search_i_w` (`word`)
+) ENGINE=MyISAM AUTO_INCREMENT=2794287 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_search_cache`
+--
+
+DROP TABLE IF EXISTS `fud26_search_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_search_cache` (
+  `srch_query` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `query_type` int(11) NOT NULL DEFAULT '0',
+  `expiry` int(11) NOT NULL DEFAULT '0',
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  `n_match` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`srch_query`,`query_type`,`msg_id`),
+  KEY `fud26_search_cache_i_e` (`expiry`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_ses`
+--
+
+DROP TABLE IF EXISTS `fud26_ses`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_ses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ses_id` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '0',
+  `sys_id` varchar(32) CHARACTER SET utf8 NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `action` text CHARACTER SET utf8,
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `time_sec` bigint(20) NOT NULL DEFAULT '0',
+  `data` text CHARACTER SET utf8,
+  `returnto` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_ses_i_u` (`user_id`),
+  UNIQUE KEY `fud26_ses_i_s` (`ses_id`),
+  KEY `fud26_ses_i_tu` (`time_sec`,`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=115543010 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_smiley`
+--
+
+DROP TABLE IF EXISTS `fud26_smiley`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_smiley` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `img` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `descr` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `code` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `vieworder` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_stats_cache`
+--
+
+DROP TABLE IF EXISTS `fud26_stats_cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_stats_cache` (
+  `user_count` int(11) NOT NULL DEFAULT '0',
+  `last_user_id` int(11) NOT NULL DEFAULT '0',
+  `online_users_reg` int(11) NOT NULL DEFAULT '0',
+  `online_users_anon` int(11) NOT NULL DEFAULT '0',
+  `online_users_hidden` int(11) NOT NULL DEFAULT '0',
+  `online_users_text` text CHARACTER SET utf8,
+  `most_online` int(11) NOT NULL DEFAULT '0',
+  `most_online_time` bigint(20) NOT NULL DEFAULT '0',
+  `cache_age` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_themes`
+--
+
+DROP TABLE IF EXISTS `fud26_themes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_themes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `theme` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `lang` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `locale` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `pspell_lang` varchar(32) CHARACTER SET utf8 DEFAULT NULL,
+  `theme_opt` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `fud26_themes_i_t` (`theme_opt`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_thr_exchange`
+--
+
+DROP TABLE IF EXISTS `fud26_thr_exchange`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_thr_exchange` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `th` int(11) NOT NULL DEFAULT '0',
+  `frm` int(11) NOT NULL DEFAULT '0',
+  `req_by` int(11) NOT NULL DEFAULT '0',
+  `reason_msg` text CHARACTER SET utf8,
+  PRIMARY KEY (`id`),
+  KEY `fud26_thr_exchange_i_f` (`frm`)
+) ENGINE=MyISAM AUTO_INCREMENT=592 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_thread`
+--
+
+DROP TABLE IF EXISTS `fud26_thread`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_thread` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `forum_id` int(11) NOT NULL DEFAULT '0',
+  `root_msg_id` int(11) NOT NULL DEFAULT '0',
+  `last_post_date` bigint(20) NOT NULL DEFAULT '0',
+  `replies` int(11) NOT NULL DEFAULT '0',
+  `views` int(11) NOT NULL DEFAULT '0',
+  `rating` int(11) NOT NULL DEFAULT '0',
+  `n_rating` int(11) NOT NULL DEFAULT '0',
+  `last_post_id` int(11) NOT NULL DEFAULT '0',
+  `moved_to` int(11) NOT NULL DEFAULT '0',
+  `orderexpiry` bigint(20) NOT NULL DEFAULT '0',
+  `thread_opt` int(11) NOT NULL DEFAULT '0',
+  `tdescr` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fud26_thread_i_flm` (`forum_id`,`moved_to`),
+  KEY `fud26_thread_i_t` (`thread_opt`),
+  KEY `fud26_thread_i_rmi` (`root_msg_id`),
+  KEY `fud26_thread_i_r` (`replies`)
+) ENGINE=MyISAM AUTO_INCREMENT=184826 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_thread_notify`
+--
+
+DROP TABLE IF EXISTS `fud26_thread_notify`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_thread_notify` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `thread_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`user_id`,`thread_id`),
+  KEY `fud26_thread_notify_i_t` (`thread_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_thread_rate_track`
+--
+
+DROP TABLE IF EXISTS `fud26_thread_rate_track`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_thread_rate_track` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `thread_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `stamp` bigint(20) NOT NULL DEFAULT '0',
+  `rating` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_thread_rate_track_i_tu` (`thread_id`,`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5573 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_title_index`
+--
+
+DROP TABLE IF EXISTS `fud26_title_index`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_title_index` (
+  `word_id` int(11) NOT NULL DEFAULT '0',
+  `msg_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`word_id`,`msg_id`),
+  KEY `fud26_title_index_i_m` (`msg_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_10`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_10`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_10` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_10_i_t` (`thread_id`),
+  KEY `fud26_tv_10_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=2619 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_100`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_100`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_100` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_100_i_t` (`thread_id`),
+  KEY `fud26_tv_100_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_101`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_101`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_101` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_101_i_t` (`thread_id`),
+  KEY `fud26_tv_101_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_102`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_102`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_102` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_102_i_t` (`thread_id`),
+  KEY `fud26_tv_102_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_103`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_103`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_103` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_103_i_t` (`thread_id`),
+  KEY `fud26_tv_103_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_104`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_104`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_104` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_104_i_t` (`thread_id`),
+  KEY `fud26_tv_104_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_105`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_105`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_105` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_105_i_t` (`thread_id`),
+  KEY `fud26_tv_105_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_106`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_106`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_106` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_106_i_t` (`thread_id`),
+  KEY `fud26_tv_106_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_107`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_107`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_107` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_107_i_t` (`thread_id`),
+  KEY `fud26_tv_107_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_108`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_108`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_108` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_108_i_t` (`thread_id`),
+  KEY `fud26_tv_108_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=405 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_12`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_12`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_12` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_12_i_t` (`thread_id`),
+  KEY `fud26_tv_12_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=3340 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_18`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_18`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_18` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_18_i_t` (`thread_id`),
+  KEY `fud26_tv_18_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=352 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_19`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_19`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_19` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_19_i_t` (`thread_id`),
+  KEY `fud26_tv_19_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=874 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_2`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_2`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_2` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_2_i_t` (`thread_id`),
+  KEY `fud26_tv_2_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=14062 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_21`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_21`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_21` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_21_i_t` (`thread_id`),
+  KEY `fud26_tv_21_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=9198 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_22`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_22`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_22` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_22_i_t` (`thread_id`),
+  KEY `fud26_tv_22_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_23`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_23`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_23` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_23_i_t` (`thread_id`),
+  KEY `fud26_tv_23_seq` (`seq`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_24`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_24`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_24` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_24_i_t` (`thread_id`),
+  KEY `fud26_tv_24_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=421 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_25`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_25`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_25` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_25_i_t` (`thread_id`),
+  KEY `fud26_tv_25_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=452516 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_26`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_26`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_26` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_26_i_t` (`thread_id`),
+  KEY `fud26_tv_26_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=4236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_29`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_29`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_29` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_29_i_t` (`thread_id`),
+  KEY `fud26_tv_29_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=61005 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_3`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_3`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_3` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_3_i_t` (`thread_id`),
+  KEY `fud26_tv_3_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=48331 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_30`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_30`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_30` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_30_i_t` (`thread_id`),
+  KEY `fud26_tv_30_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=881 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_36`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_36`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_36` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_36_i_t` (`thread_id`),
+  KEY `fud26_tv_36_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=175 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_37`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_37`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_37` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_37_i_t` (`thread_id`),
+  KEY `fud26_tv_37_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_38`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_38`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_38` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_38_i_t` (`thread_id`),
+  KEY `fud26_tv_38_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_44`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_44`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_44` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_44_i_t` (`thread_id`),
+  KEY `fud26_tv_44_seq` (`seq`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_45`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_45`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_45` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_45_i_t` (`thread_id`),
+  KEY `fud26_tv_45_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=1386 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_46`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_46`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_46` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_46_i_t` (`thread_id`),
+  KEY `fud26_tv_46_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_47`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_47`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_47` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_47_i_t` (`thread_id`),
+  KEY `fud26_tv_47_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=16732 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_48`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_48`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_48` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_48_i_t` (`thread_id`),
+  KEY `fud26_tv_48_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_49`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_49`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_49` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_49_i_t` (`thread_id`),
+  KEY `fud26_tv_49_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=498 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_5`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_5`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_5` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_5_i_t` (`thread_id`),
+  KEY `fud26_tv_5_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=72783 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_51`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_51`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_51` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_51_i_t` (`thread_id`),
+  KEY `fud26_tv_51_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_52`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_52`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_52` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_52_i_t` (`thread_id`),
+  KEY `fud26_tv_52_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_53`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_53`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_53` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_53_i_t` (`thread_id`),
+  KEY `fud26_tv_53_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_54`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_54`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_54` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_54_i_t` (`thread_id`),
+  KEY `fud26_tv_54_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_56`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_56`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_56` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_56_i_t` (`thread_id`),
+  KEY `fud26_tv_56_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_57`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_57`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_57` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_57_i_t` (`thread_id`),
+  KEY `fud26_tv_57_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_58`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_58`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_58` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_58_i_t` (`thread_id`),
+  KEY `fud26_tv_58_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_59`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_59`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_59` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_59_i_t` (`thread_id`),
+  KEY `fud26_tv_59_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_6`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_6`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_6` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_6_i_t` (`thread_id`),
+  KEY `fud26_tv_6_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_60`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_60`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_60` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_60_i_t` (`thread_id`),
+  KEY `fud26_tv_60_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=5094 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_61`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_61`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_61` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_61_i_t` (`thread_id`),
+  KEY `fud26_tv_61_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_62`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_62`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_62` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_62_i_t` (`thread_id`),
+  KEY `fud26_tv_62_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_63`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_63`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_63` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_63_i_t` (`thread_id`),
+  KEY `fud26_tv_63_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_64`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_64`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_64` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_64_i_t` (`thread_id`),
+  KEY `fud26_tv_64_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_65`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_65`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_65` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_65_i_t` (`thread_id`),
+  KEY `fud26_tv_65_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_66`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_66`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_66` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_66_i_t` (`thread_id`),
+  KEY `fud26_tv_66_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_67`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_67`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_67` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_67_i_t` (`thread_id`),
+  KEY `fud26_tv_67_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_68`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_68`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_68` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_68_i_t` (`thread_id`),
+  KEY `fud26_tv_68_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_69`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_69`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_69` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_69_i_t` (`thread_id`),
+  KEY `fud26_tv_69_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_7`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_7`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_7` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_7_i_t` (`thread_id`),
+  KEY `fud26_tv_7_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=81037 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_70`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_70`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_70` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_70_i_t` (`thread_id`),
+  KEY `fud26_tv_70_seq` (`seq`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_71`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_71`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_71` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_71_i_t` (`thread_id`),
+  KEY `fud26_tv_71_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_72`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_72`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_72` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_72_i_t` (`thread_id`),
+  KEY `fud26_tv_72_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_73`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_73`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_73` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_73_i_t` (`thread_id`),
+  KEY `fud26_tv_73_seq` (`seq`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_74`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_74`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_74` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_74_i_t` (`thread_id`),
+  KEY `fud26_tv_74_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_75`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_75`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_75` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_75_i_t` (`thread_id`),
+  KEY `fud26_tv_75_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_76`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_76`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_76` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_76_i_t` (`thread_id`),
+  KEY `fud26_tv_76_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=148 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_77`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_77`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_77` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_77_i_t` (`thread_id`),
+  KEY `fud26_tv_77_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_78`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_78`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_78` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_78_i_t` (`thread_id`),
+  KEY `fud26_tv_78_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_79`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_79`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_79` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_79_i_t` (`thread_id`),
+  KEY `fud26_tv_79_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=480 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_8`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_8`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_8` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_8_i_t` (`thread_id`),
+  KEY `fud26_tv_8_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=730 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_80`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_80`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_80` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_80_i_t` (`thread_id`),
+  KEY `fud26_tv_80_seq` (`seq`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_81`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_81`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_81` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_81_i_t` (`thread_id`),
+  KEY `fud26_tv_81_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_82`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_82`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_82` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_82_i_t` (`thread_id`),
+  KEY `fud26_tv_82_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_83`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_83`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_83` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_83_i_t` (`thread_id`),
+  KEY `fud26_tv_83_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_84`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_84`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_84` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_84_i_t` (`thread_id`),
+  KEY `fud26_tv_84_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_85`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_85`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_85` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_85_i_t` (`thread_id`),
+  KEY `fud26_tv_85_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_86`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_86`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_86` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_86_i_t` (`thread_id`),
+  KEY `fud26_tv_86_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_87`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_87`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_87` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_87_i_t` (`thread_id`),
+  KEY `fud26_tv_87_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=1073 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_88`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_88`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_88` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_88_i_t` (`thread_id`),
+  KEY `fud26_tv_88_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_89`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_89`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_89` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_89_i_t` (`thread_id`),
+  KEY `fud26_tv_89_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_9`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_9`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_9` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_9_i_t` (`thread_id`),
+  KEY `fud26_tv_9_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=487 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_90`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_90`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_90` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_90_i_t` (`thread_id`),
+  KEY `fud26_tv_90_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_91`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_91`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_91` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_91_i_t` (`thread_id`),
+  KEY `fud26_tv_91_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=2081 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_92`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_92`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_92` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_92_i_t` (`thread_id`),
+  KEY `fud26_tv_92_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_93`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_93`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_93` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_93_i_t` (`thread_id`),
+  KEY `fud26_tv_93_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_94`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_94`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_94` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_94_i_t` (`thread_id`),
+  KEY `fud26_tv_94_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_95`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_95`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_95` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_95_i_t` (`thread_id`),
+  KEY `fud26_tv_95_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_96`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_96`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_96` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_96_i_t` (`thread_id`),
+  KEY `fud26_tv_96_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_97`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_97`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_97` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_97_i_t` (`thread_id`),
+  KEY `fud26_tv_97_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_98`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_98`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_98` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_98_i_t` (`thread_id`),
+  KEY `fud26_tv_98_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=8650 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_tv_99`
+--
+
+DROP TABLE IF EXISTS `fud26_tv_99`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_tv_99` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `seq` int(11) NOT NULL,
+  `thread_id` int(11) NOT NULL,
+  `iss` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_tv_99_i_t` (`thread_id`),
+  KEY `fud26_tv_99_seq` (`seq`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_user_ignore`
+--
+
+DROP TABLE IF EXISTS `fud26_user_ignore`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_user_ignore` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ignore_id` int(11) NOT NULL DEFAULT '0',
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_user_ignore_i_ui` (`user_id`,`ignore_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1799 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `fud26_users`
+--
+
+DROP TABLE IF EXISTS `fud26_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fud26_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(50) CHARACTER SET cp1251 NOT NULL DEFAULT '',
+  `alias` varchar(50) CHARACTER SET cp1251 NOT NULL DEFAULT '',
+  `passwd` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET cp1251 NOT NULL DEFAULT '',
+  `email` varchar(255) CHARACTER SET cp1251 NOT NULL DEFAULT '',
+  `location` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `interests` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `occupation` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `avatar` int(11) NOT NULL DEFAULT '0',
+  `avatar_loc` varchar(512) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `icq` bigint(20) DEFAULT NULL,
+  `aim` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `yahoo` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `msnm` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `jabber` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `affero` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `posts_ppg` int(11) NOT NULL DEFAULT '0',
+  `time_zone` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'UTC',
+  `join_date` bigint(20) NOT NULL DEFAULT '0',
+  `conf_key` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_image` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `theme2` int(11) NOT NULL DEFAULT '0',
+  `theme` int(11) NOT NULL DEFAULT '0',
+  `posted_msg_count` int(11) NOT NULL DEFAULT '0',
+  `last_visit` bigint(20) NOT NULL DEFAULT '0',
+  `referer_id` int(11) NOT NULL DEFAULT '0',
+  `last_read` bigint(20) NOT NULL DEFAULT '0',
+  `custom_status` text CHARACTER SET cp1251,
+  `sig` text CHARACTER SET cp1251,
+  `level_id` int(11) NOT NULL DEFAULT '0',
+  `reset_key` varchar(32) CHARACTER SET cp1251 NOT NULL DEFAULT '0',
+  `u_last_post_id` int(11) NOT NULL DEFAULT '0',
+  `home_page` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `bio` text CHARACTER SET cp1251,
+  `cat_collapse_status` text CHARACTER SET cp1251,
+  `custom_color` varchar(255) CHARACTER SET cp1251 DEFAULT NULL,
+  `buddy_list` text CHARACTER SET cp1251,
+  `ignore_list` text CHARACTER SET cp1251,
+  `group_leader_list` text CHARACTER SET cp1251,
+  `users_opt` int(11) NOT NULL DEFAULT '4488117',
+  `sq` varchar(32) CHARACTER SET cp1251 DEFAULT NULL,
+  `reg_ip` bigint(20) NOT NULL DEFAULT '0',
+  `ban_expiry` bigint(20) NOT NULL DEFAULT '0',
+  `topics_per_page` int(11) NOT NULL DEFAULT '40',
+  `last_login` bigint(20) NOT NULL DEFAULT '0',
+  `google` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `skype` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `twitter` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `flag_cc` char(2) CHARACTER SET utf8 DEFAULT NULL,
+  `flag_country` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `last_known_ip` bigint(20) NOT NULL DEFAULT '0',
+  `salt` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birthday` char(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `custom_fields` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `fud26_users_i_l` (`login`),
+  UNIQUE KEY `fud26_users_i_e` (`email`),
+  UNIQUE KEY `fud26_users_i_a` (`alias`),
+  KEY `fud26_users_i_rk` (`reset_key`),
+  KEY `fud26_users_i_lv` (`last_visit`),
+  KEY `fud26_users_i_ck` (`conf_key`),
+  KEY `fud26_users_i_ri` (`referer_id`),
+  KEY `fud26_users_i_uo` (`users_opt`),
+  KEY `fud26_users_i_jd` (`join_date`),
+  KEY `fud26_users_i_bd` (`birthday`)
+) ENGINE=MyISAM AUTO_INCREMENT=27440 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tw_ban`
+--
+
+DROP TABLE IF EXISTS `tw_ban`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tw_ban` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `user_login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ban_date` datetime DEFAULT NULL,
+  `ban_expiry` datetime DEFAULT NULL,
+  `ban_reason` longtext COLLATE utf8_unicode_ci,
+  `ban_prooflinks` longtext COLLATE utf8_unicode_ci,
+  `ban_rule` longtext COLLATE utf8_unicode_ci,
+  `moderator_id` int(11) DEFAULT NULL,
+  `moderator_login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `_Images_count` int(11) DEFAULT '0',
+  `_ctime` datetime DEFAULT NULL,
+  `_mtime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=544 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tw_ban_images`
+--
+
+DROP TABLE IF EXISTS `tw_ban_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tw_ban_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_filename` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_data` longblob,
+  `file_mimetype` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `file_size` bigint(20) DEFAULT NULL,
+  `Parent_id` int(11) DEFAULT NULL,
+  `Parent_id_hash` varchar(16) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `_ctime` datetime DEFAULT NULL,
+  `_mtime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Parent_id` (`Parent_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-06-17 23:40:13

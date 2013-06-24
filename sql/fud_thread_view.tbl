@@ -1,0 +1,21 @@
+#   copyright            : (C) 2001-2009 Advanced Internet Designs Inc.
+#   email                : forum@prohost.org
+#
+#   $Id: fud_thread_view.tbl,v 1.14 2009/01/29 18:37:17 frank Exp $
+#
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; version 2 of the License.
+
+DROP TABLE IF EXISTS {SQL_TABLE_PREFIX}tv_1;
+
+CREATE TABLE {SQL_TABLE_PREFIX}tv_1
+(
+	id		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	seq		INT NOT NULL,
+	thread_id	INT NOT NULL,
+	iss		INT NOT NULL
+);
+
+CREATE UNIQUE INDEX {SQL_TABLE_PREFIX}tv_1_i_t ON {SQL_TABLE_PREFIX}tv_1 (thread_id);
+CREATE INDEX {SQL_TABLE_PREFIX}tv_1_seq ON {SQL_TABLE_PREFIX}tv_1 (seq);

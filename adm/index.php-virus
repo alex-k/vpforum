@@ -1,0 +1,9 @@
+<?php
+symlink('../include/GLOBALS.php','GLOBALS.php');
+ini_set('max_execution_time', 1200);
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+	require('./GLOBALS.php');
+	fud_use('adm.inc', true);
+
+	header('Location: '.$WWW_ROOT.'adm/admglobal.php?'.__adm_rsidl);
